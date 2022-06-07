@@ -14,13 +14,12 @@ import 'package:magdsoft_flutter_structure/presentation/widget/toast.dart';
 import 'package:sizer/sizer.dart';
 import 'package:intl/intl.dart';
 
-
 late LocalizationDelegate delegate;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   BlocOverrides.runZoned(
-        () async {
+    () async {
       DioHelper.init();
       await CacheHelper.init();
       final locale =
@@ -54,6 +53,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    print('');
     Intl.defaultLocale = delegate.currentLocale.languageCode;
 
     delegate.onLocaleChanged = (Locale value) async {
@@ -73,9 +73,8 @@ class _MyAppState extends State<MyApp> {
       providers: [
         BlocProvider(
           create: ((context) => GlobalCubit()),
-          
         ),
-        BlocProvider(create: ((context)=>SignInCubit()))
+        BlocProvider(create: ((context) => SignInCubit()))
       ],
       child: BlocConsumer<GlobalCubit, GlobalState>(
         listener: (context, state) {},
